@@ -1,0 +1,31 @@
+.NavBarContainer {
+    height: 100px;
+    width: 100%;
+    background-color: white;
+    position: fixed;  /* Zorgt ervoor dat de container vast staat */
+    bottom: 0;  /* Plaatst de container onderaan het scherm */
+    left: 0;  /* Zorgt ervoor dat de container zich uitstrekt over de volledige breedte */
+    display: flex;
+    align-items: center;  /* Voor verticale uitlijning */
+    justify-content: space-around;  /* Voor horizontale uitlijning */
+    box-shadow: rgba(33, 35, 38, 0.1) 0px -10px 10px -10px;
+}
+
+.NavBarContainer > div {
+    display: flex;
+    flex-direction: column;  /* Voor verticale stapeling van de afbeelding en tekst */
+    align-items: center;  /* Horizontaal centreren van de items */
+}
+
+.Tag {
+    color: #DD004A;
+    font-size: 14px;
+    padding-top: 4px;
+}
+
+.TagActive {
+    color: #5A001E;
+    font-size: 14px;
+    padding-top: 4px;
+    font-weight: 700;
+}
