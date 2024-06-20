@@ -1,0 +1,7 @@
+.ElementBorder {
+    height: 100px;
+    background-color: rgb(207, 207, 207);
+    display: flex; /* Gebruik Flexbox */
+    justify-content: center; /* Horizontaal centreren */
+    align-items: center; /* Verticaal centreren */
+}

@@ -11,6 +11,15 @@
     box-shadow: rgba(33, 35, 38, 0.1) 0px -10px 10px -10px;
 }
 
+.NavBarContainer a {
+    text-decoration: none;
+}
+
+.NavButton {
+    text-decoration: none;
+    text-align: center;
+}
+
 .NavBarContainer > div {
     display: flex;
     flex-direction: column;  /* Voor verticale stapeling van de afbeelding en tekst */

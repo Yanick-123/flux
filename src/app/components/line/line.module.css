@@ -1,0 +1,7 @@
+.Line {
+    border: none; /* Verwijder de standaard border */
+    height: 1px; /* Stelt de dikte van de lijn in */
+    background-color: #FF8080; /* Verandert de kleur van de lijn */
+    width: 100%; /* Verandert de breedte van de lijn */
+    margin: 12px auto; /* Maakt de lijn gecentreerd en geeft wat ruimte erboven en eronder */
+}
