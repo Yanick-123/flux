@@ -6,3 +6,40 @@
     box-sizing: border-box;
     top: 17.5%;
 }
+
+.ElementBorder {
+    height: 100px;
+    background-image: url("../../../../public/img/Weather/Clear.jpg");
+    background-size: cover; /* Bedekt de gehele achtergrond */
+    background-position: center; /* Centreert de achtergrond */
+    background-position: center bottom;
+    display: flex; /* Gebruik Flexbox */
+    justify-content: center; /* Horizontaal centreren */
+    align-items: center; /* Verticaal centreren */
+    border-radius: 10px;
+    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+    
+}
+
+.WeatherDataContainer {
+    width: 100%;
+    padding: 0px 12px 0px 12px;
+}
+
+.WeatherData {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    text-align: right;
+    color: #FFF8F8;
+    font-size: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, .3);
+}
+
+.Temp {
+    font-size: 64px;
+    font-weight: 500;
+    color: #FFF8F8;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, .3);
+}
