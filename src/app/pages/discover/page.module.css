@@ -70,6 +70,13 @@
     justify-content: center; /* Horizontaal centreren */
     align-items: center; /* Verticaal centreren */
 }
+
 .ButtonRight {
     border-radius: 0 10px 10px 0;
+}
+
+.ErrorText {
+    color: white;
+    font-size: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, .3);
 }

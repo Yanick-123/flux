@@ -16,27 +16,26 @@ export default function Page() {
   const [city, setCity] = useState('');
   const [weatherData, setWeatherData] = useState<any>({});
   const [loading, setLoading] = useState(false);
-  const [inputCity, setInputCity] = useState(''); // Leeg invoerveld bij start
+  const [inputCity, setInputCity] = useState('');
+  const [error, setError] = useState(false);
   const typingTimeoutRef = useRef<any>(null);
 
   useEffect(() => {
-    // Haal bij het laden van de pagina de weerdata op voor de huidige locatie van de gebruiker
     getCurrentLocationWeather();
   }, []);
 
-  // Functie om weerdata op te halen op basis van de huidige locatie van de gebruiker
   const getCurrentLocationWeather = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const lat = position.coords.latitude;
           const lon = position.coords.longitude;
-          // Gebruik een API om de stad op basis van de coördinaten te achterhalen
           axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`)
             .then((response) => {
               const cityName = response.data.name;
-              setInputCity(cityName); // Stel de stad in op basis van de locatie van de gebruiker
-              setCity(cityName); // Update de stad in de state voor de weerwidget
+              setInputCity(cityName);
+              setCity(cityName);
+              setError(false);
               fetchWeatherData(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`);
             })
             .catch((error) => {
@@ -52,26 +51,25 @@ export default function Page() {
     }
   };
 
-  // Functie om weerdata op te halen op basis van een specifieke stad
   const fetchWeatherData = (url: string) => {
     setLoading(true);
     axios.get(url)
       .then((response) => {
         setWeatherData(response.data);
+        setError(false);
         setLoading(false);
       })
       .catch((error) => {
         console.error('Error fetching weather data:', error);
+        setError(true);
         setLoading(false);
       });
   };
 
-  // Functie om een temperatuur af te ronden naar het dichtstbijzijnde gehele getal
   const getRoundedTemp = (temp: number) => {
     return Math.round(temp);
   };
 
-  // Functie om weertype te vertalen naar Nederlands
   const translateWeather = (weatherMain: string) => {
     switch (weatherMain.toLowerCase()) {
       case 'clear':
@@ -97,7 +95,6 @@ export default function Page() {
     }
   };
 
-  // Functie om een achtergrondafbeelding te selecteren op basis van het weer
   const selectBackgroundImage = (weatherMain: string) => {
     switch (weatherMain.toLowerCase()) {
       case 'clear':
@@ -107,34 +104,29 @@ export default function Page() {
       case 'rain':
         return '/img/Weather/RainAnimated.gif';
       default:
-        return '/img/Weather/Clear.jpg'; // Als fallback
+        return '/img/Weather/Clear.jpg';
     }
   };
 
-  // Event handler voor het wijzigen van de stad in het invoerveld
   const handleCityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const city = event.target.value;
     setInputCity(city);
 
-    // Voorkom te frequent aanroepen van de fetchWeatherData functie
     if (typingTimeoutRef.current) {
       clearTimeout(typingTimeoutRef.current);
     }
 
-    // Wacht 2 seconden na laatste typen voordat fetchWeatherData wordt aangeroepen
     typingTimeoutRef.current = setTimeout(() => {
       const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
-      setCity(city); // Update de stad in de state voor de weerwidget
-      fetchWeatherData(url); // Haal weerdata op voor de nieuwe stad
+      setCity(city);
+      fetchWeatherData(url);
     }, 2000);
   };
 
-  // Event handler voor klikken op de knop om de huidige locatie te gebruiken
   const handleCurrentLocationClick = () => {
     getCurrentLocationWeather();
   };
 
-  // Event handler voor klikken op de zoekknop
   const handleSearchClick = () => {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputCity}&units=metric&appid=${apiKey}`;
     fetchWeatherData(url);
@@ -166,7 +158,9 @@ export default function Page() {
         {/* Weer widget */}
         <div className={Styles.ElementBorder} style={{ backgroundImage: `url(${selectBackgroundImage(weatherData.weather ? weatherData.weather[0].main : 'default')})` }}>
           {loading ? (
-            <p>Loading...</p>
+            <p className={Styles.ErrorText}>Loading...</p>
+          ) : error ? (
+            <p className={Styles.ErrorText}>Voer een geldige locatie in</p>
           ) : (
             <div className={Styles.WeatherDataContainer}>
               {weatherData.main && (
@@ -183,7 +177,6 @@ export default function Page() {
             </div>
           )}
         </div>
-
       </div>
       <NavBar activePage="discover" />
     </>

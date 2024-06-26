@@ -6,3 +6,17 @@
     box-sizing: border-box;
     top: 17.5%;
 }
+
+.PageTitleContainer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.PageTitleContainer img{
+    padding-left: 12px;
+}
+
+.PageTitle {
+    font-size: 20px;
+    color: #5A001E;
+}

@@ -1,0 +1,16 @@
+.OutlineButtonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    margin-top: 12px;
+    text-align: center;
+    border-radius: 10px;
+    border: 4px dotted #DD004A;
+}
+
+.OutlineButtonContainer p {
+    font-weight: 700;
+    font-size: 24px;
+    color: #DD004A;
+}

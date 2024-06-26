@@ -6,3 +6,18 @@
     box-sizing: border-box;
     top: 17.5%;
 }
+
+.PageTitle {
+    font-size: 20px;
+    color: #5A001E;
+    text-align: center;
+}
+
+.FlexContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.InputBoxTitle {
+    color: #5A001E;
+}

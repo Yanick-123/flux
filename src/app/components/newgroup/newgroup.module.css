@@ -3,6 +3,11 @@
     gap: 12px;
 }
 
+.ButtonContainer a{
+    text-decoration: none;
+}
+
+
 .ElementBorderDashed {
     width: 66%;
     height: 100px;

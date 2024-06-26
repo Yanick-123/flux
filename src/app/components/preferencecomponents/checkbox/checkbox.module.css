@@ -1,0 +1,24 @@
+.CheckBoxTitle {
+    color: #5A001E;
+}
+
+.CheckBoxContainer {
+    display: flex;
+    align-items: center; /* Centreert de inhoud verticaal */
+    margin: 10px 0; /* Optioneel, voor wat ruimte tussen de checkboxes */
+  }
+
+.CheckboxLabel {
+    display: flex;
+    align-items: center;
+    font-size: 16px; /* Pas aan naar wens */
+    padding-right: 6px;
+  }
+  
+  .CheckboxInput {
+    width: 25px;
+    height: 25px;
+    margin-right: 8px;
+    border: 1px solid #FF8080;
+    box-sizing: border-box; /* Zorgt ervoor dat padding en border worden meegerekend in de totale breedte en hoogte */
+  }
